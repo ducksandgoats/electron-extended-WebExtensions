@@ -42,7 +42,7 @@ class WebNavigation extends EventEmtiter {
     })
     webContents.on('did-start-navigation', (event, url, isInPlace, isMainFrame, frameProcessId, frameRoutingId) => {
       const details = { url, isInPlace, isMainFrame, frameProcessId, frameRoutingId }
-      this.dispatchOnCommitted(webContents, event, details)
+      this.dispatchOnCommitted(webContents, event, details).catch(err => {console.error(err)})
     })
     webContents.on('did-frame-finish-load', (event, isMainFrame, frameProcessId, frameRoutingId) => {
       // Same as dom load
